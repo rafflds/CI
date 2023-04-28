@@ -1,0 +1,61 @@
+Ubuntu
+
+Para instalar o docker no Ubuntu, utilize os comandos abaixo ou siga o guia na documentação do docker:
+
+sudo apt-get update
+
+sudo apt-get install ca-certificates curl gnupg lsb-release
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+
+
+
+
+
+GO no linux
+
+sudo apt install golang-go
+
+
+
+
+
+
+Abrir o terminal
+
+- docker-compose up -d  (-d serve para não travar o terminal) subir o banco de dados, para isso vamos utilizar o docker compose, 
+- go run main.go   (iniciar a aplicação utilizando o Go e informar qual aplicação queremos executar)
+
+
+Obs: Caso na hora de subir o Docker ocorra um erro, entre o arquivo docer-compose.yml, veja se o código está assim
+ - volumes:
+ - /postgres-data:/var/lib/postgresql/data
+
+
+
+
+
+
+No navegador
+ - http://localhost:8080/rafael   (ela vai ter que responder, API diz	"E ai rafael, Tudo beleza?")  * respondeu está funcionando
+
+
+
+
+
+
+ Testando aplicação
+
+ 1° parar app (terminal, ctrl + c)
+ 2° existe uma nova versão no git hub deste arquivo, irei cloná-la  (git clone https://github.com/alura-cursos/Curso_CI.git)
+ 3° docker-compose down (parar o serviço)
+ 4° docker-compose up -d (iniciar serviço)
+ 5° go test main_test.go  (chama o executavel do GO, para realizar os testes do arquivo)
+ 6° go test -v main_test.go  (chama o executavel do GO, para realizar os testes do arquivo, com mais resposta)
