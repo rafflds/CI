@@ -1,0 +1,45 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  # 1° roda o test
+  test:
+    runs-on: ubuntu-latest   # última versão do Ubuntu
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.19
+
+     # Banco de dados   
+    - name: Build-DB
+      run: docker-compose build      #  subir banco
+      
+    - name: Create-DB    
+      run: docker-compose up -d      #  criar banco
+
+    # rodar o test
+    - name: Test
+      run: go test -v main_test.go
+      
+  
+  
+  # 2° roda a build
+  build:
+    needs: test    # ele precisa que o teste de certo, para roda
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      
+    - name: Build
+      run: go build -v main.go
