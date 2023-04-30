@@ -5,9 +5,9 @@ name: Go
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "*" ]   # Carta coringa, qualquer coisa serve
   pull_request:
-    branches: [ "master" ]
+    branches: [ "*" ]
 
 jobs:
   # 1° roda o test
