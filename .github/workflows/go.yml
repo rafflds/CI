@@ -42,8 +42,10 @@ jobs:
   build:
     needs: test    # ele precisa que o teste de certo, para roda
     runs-on: ${{ matrix.os }}        # rodar os sistemas
+    strategy:
+      matrix:
+        os: ['ubuntu-latest', 'ubuntu-18.04']     # última versão do Ubuntu, versão especifica
     steps:
-    - uses: actions/checkout@v3
-      
+    - uses: actions/checkout@v3      
     - name: Build
       run: go build -v main.go
