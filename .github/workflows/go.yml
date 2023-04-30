@@ -5,7 +5,7 @@ name: Go
 
 on:
   push:
-    branches: [ "*" ]   # Carta coringa, qualquer coisa serve
+    branches: [ "*" ]   # Carta coringa, qualquer banch serve
   pull_request:
     branches: [ "*" ]
 
