@@ -12,17 +12,18 @@ on:
 jobs:
   # 1° roda o test
   test:
-    runs-on: ubuntu-latest   # última versão do Ubuntu
+    runs-on: ${{ matrix.os }}        # rodar os sistemas
     strategy:
       matrix:
         go_version: ['1.18', '1.19', '>=1.19']    # versões do Go, serem aceitas
+        os: ['ubuntu-latest', 'ubuntu-18.04']     # última versão do Ubuntu, versão especifica
     steps:
     - uses: actions/checkout@v3
 
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
-        go-version: ${{ matrix.go_version }}
+        go-version: ${{ matrix.go_version }}  # rodar as versões
 
      # Banco de dados   
     - name: Build-DB
@@ -40,7 +41,7 @@ jobs:
   # 2° roda a build
   build:
     needs: test    # ele precisa que o teste de certo, para roda
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}        # rodar os sistemas
     steps:
     - uses: actions/checkout@v3
       
